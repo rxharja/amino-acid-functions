@@ -36,6 +36,12 @@ assert base_counter("ATGCGTAtttTTGAGCAnnnnnnnnnnn",35) == True
 assert base_counter("ATGCGTAtttTTGAGCAnnnnnnnnnnn",50) == False
 #given a dna sequence, a kmer size, and a minimum frequency, prints the kmers that occur more often than the minimum frequency
 def kmer_counting(dna,kmersize,minfrequency):
+	#catch some user error inputs
+	if dna < kmersize:
+		return "kmer size longer than dna"
+	elif kmersize < 2:
+		return "kmers must be longer than 1 base"
+
 	kmers = []
 	[kmers.append(dna[idx:idx+kmersize]) for idx in range(len(dna)) if len(dna[idx:idx+kmersize]) == kmersize]	
 	uniq_kmers = set(kmers)
