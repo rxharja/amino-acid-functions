@@ -14,7 +14,7 @@ assert round(amino_acid_percentages_v1("MSRSLLLRFLLFLLLLPPLP", "Y")) == round(0)
 def amino_acid_percentages_v2(sequence, residue=['A','I','L','M','F','W','Y','V']):
 	try:
 		total = 0
-		total = sum((sequence.upper().count(res.upper())/len(sequence))*100 for res in residue)
+		total = sum((sequence.upper().count(res.upper())/len(sequence))*100 for res in set(residue))
 		return total
 	except(AttributeError, TypeError):
 		raise AssertionError('inputs should be strings')
